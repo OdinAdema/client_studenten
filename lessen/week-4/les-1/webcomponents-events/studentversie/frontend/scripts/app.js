@@ -1,6 +1,7 @@
 import {template} from "./modules/template.js";
 import {Cirkel} from "./components/cirkel.js";
 import {Vierkant} from "./components/vierkant.js";
+import {Driehoek} from "./components/driehoek.js";
 
 class App extends HTMLElement {
 
@@ -44,11 +45,18 @@ class App extends HTMLElement {
 
     applyEventlisteners(){
         this.addEventListener('cirkelClick', this.cirkelClickedHandler);
+        this.addEventListener('driehoekClick', this.driehoekClickedHandler )
     }
 
     cirkelClickedHandler(event) {
         let cirkelComponent = this.shadowRoot.getElementById('cirkel-1');
         cirkelComponent.setState('cirkelClicks', ++cirkelComponent.state.cirkelClicks);
+    }
+
+    driehoekClickedHandler(event) {
+        let driehoekComponent = this.shadowRoot.getElementById('driehoek-1');
+        driehoekComponent.setState('driehoekClicks', ++driehoekComponent.state.driehoekClicks);
+        
     }
 
 }

@@ -8,6 +8,7 @@ const appTemplate = {
             <click-cirkel id="cirkel-1" color="red">a</click-cirkel>
             <click-cirkel id="cirkel-2" color="blue">b</click-cirkel>
             <click-vierkant id="vierkant-1" color="blue">default value - geen webcomponent</click-vierkant>
+            <click-driehoek id="driehoek-1" color="blue">default value - geen webcomponent</click-driehoek>
         </div>
     </div> 
     `
@@ -31,12 +32,22 @@ const vierkantTemplate = {
     `
 }
 
+const driehoekTemplate = {
+    id: 'click-driehoek-tpl',
+    template: `
+    <div class="driehoek">
+        <p data-bind="driehoekClicks">driehoek</p>
+    </div>
+    `
+}
+
 class Template{
 
     attachTemplates(){
         this.attachTemplate(appTemplate);
         this.attachTemplate(cirkelTemplate);
         this.attachTemplate(vierkantTemplate);
+        this.attachTemplate(driehoekTemplate);
     }
 
     attachTemplate(tplObject){

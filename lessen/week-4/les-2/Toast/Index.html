@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Toast-html page</title>
+</head>
+<body>
+
+<toast-message>
+    <div slot="icon">&#9762;</div>
+</toast-message>
+
+
+</body>
+</html>
+
+<template id="toast-message-tmp">
+    <style>
+        .toast{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            background-color: green;
+            margin: 10px;
+            padding: 10px;
+            left: 80%;
+            top: 5%;
+            width: 250px;
+            height: 30px;
+            border-radius: 5px;
+            font-family: Arial;
+            color: white;
+        }
+        .toast p{
+            margin: 0;
+        }
+        .toast button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+    </style>
+    
+    <div class="toast">
+        <slot name="icon">Default</slot>
+         I'm a toast message
+        <button>&#9747;</button>
+    </div>
+</template>
+
+
+<script>
+    class myToast extends HTMLElement {
+        constructor() {
+            super();
+            let template = document.getElementById("toast-message-tmp");
+            let templateContent = template.content;
+
+            const shadowRoot = this.attachShadow({mode: "closed"});
+            shadowRoot.appendChild(templateContent.cloneNode(true));
+            
+            const closeButton = shadowRoot.querySelector('button')
+            closeButton.addEventListener('click',() => {
+                this.remove()
+            })
+        }
+        
+        connectedCallback(){
+            setTimeout(() => {
+                this.remove();
+            }, 5000);
+            
+        }
+    }
+    customElements.define('toast-message', myToast)
+</script>

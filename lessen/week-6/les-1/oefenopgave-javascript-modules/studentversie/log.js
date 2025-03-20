@@ -1,8 +1,8 @@
 
 
 //student uitwerking
-//class Log {
 
+export default class Log{
     info(message) {
         console.info(message);
     }
@@ -14,6 +14,5 @@
     error(message) {
         console.error(message);
     }
-
 }
 
